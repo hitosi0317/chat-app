@@ -3,15 +3,22 @@
     <%= link_to current_user.name, edit_user_path(current_user) %> <!--ログインしているユーザーの編集をするため 、edit_user_path(current_user)と指定しますcurrent_user.nameは、ログインしているユーザー名ですユーザー名をクリックすると、usersコントローラーのeditアクションが実行され、編集ページに遷移できます。-->
   </div>
   <div class="create-room">
-    <a href="#">チャットを作成する</a>
-  </div>
+    <%= link_to "チャットを作成する", new_room_path %><!--rails routesコマンドで新規作成チャットルームのprifixを確認する-->
 </div>
 
 <div class="rooms">
-  <div class="chat-list">
-    <a href="#">techroom1</a>
-  </div>
-  <div class="chat-list">
-    <a href="#">techroom2</a>
-  </div>
+  <% current_user.rooms.eath do |room|%> 
+    <div class="room">
+      <div class="room-name">
+        <a href="#"><%= room.name %></a>
+      </div>
+    </div>
+   <% end %> 
 </div>
+<!--・サイドバー下部に、現在ログイン中のユーザーが持っているすべてのチャットルーム名を表示されている
+サイドバー下部の実装にはeach文を使用しましょう-->
+<!--チャットルームは複数作成出来るので、「eachメソッド」を使って全てのチャットルームに対して同じ処理を繰り返し実行します。
+今回でしたら、「チャットルーム名を表示する」という処理を繰り返し実行しています。
+
+2行目の 「|room|」の部分は変数名なので命名規則はないですが、今回は分かりやすいように「room」としています。
+また、5行目のroom.nameの「name」は、roomsテーブルのカラム名となります。-->

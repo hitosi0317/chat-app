@@ -16,6 +16,14 @@
         <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
       </div>
       <div class='chat-room-form__field--right'>
+        <select name="room[user_ids][]"><!--19行目と２３行目select要素のname属性にroom[user_ids][]を指定し、option要素のvalue属性にuser.idを指定しました。このように記述することで、これまでとは異なる形でパラメーターが送信されるため、paramsは以下のようになります。管理機能のカリキュラムを見よう-->
+          <option>チャットするユーザーを選択してください</option>
+          <!--where.not(id: current_user.id)と記述することで現在ログインしているユーザー名を表示させない-->
+            <% User.where.not(id: current_user.id).each do |user| %> <!--ビューファイル上で、DBに管理されているユーザーすべてのレコードをUserクラスから取得して、それぞれ1つずつユーザー名を表示させる実装を行います。-->
+              <option value=<%= user.id %>><%= user.name %></option>
+            <% end %>
+        </select>
+        <input name="room[user_ids][]" type="hidden" value=<%= current_user.id  %>> <!--この記述で、現在ログイン中のユーザーが持つidをparamsに含めることができますroom[user_ids]に2種類のユーザーidを格納することができました。。-->
       </div>
     </div>
     <div class='chat-room-form__field'>

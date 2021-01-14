@@ -4,16 +4,17 @@
   </div>
   <div class="create-room">
     <%= link_to "チャットを作成する", new_room_path %><!--rails routesコマンドで新規作成チャットルームのprifixを確認する-->
+  </div>
 </div>
 
 <div class="rooms">
-  <% current_user.rooms.eath do |room|%> 
+  <% current_user.rooms.each do |room| %>
     <div class="room">
       <div class="room-name">
         <a href="#"><%= room.name %></a>
       </div>
     </div>
-   <% end %> 
+  <% end %>
 </div>
 <!--・サイドバー下部に、現在ログイン中のユーザーが持っているすべてのチャットルーム名を表示されている
 サイドバー下部の実装にはeach文を使用しましょう-->

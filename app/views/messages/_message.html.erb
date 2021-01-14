@@ -1,0 +1,15 @@
+<div class="message">
+  <div class="upper-message">
+    <div class="message-user">
+      <%= message.user.name %><!--messagesテーブルのuser_idに紐付いているユーザー名を、user.nameと記述することで取得しています。-->
+    </div>
+    <div class="message-date">
+      <%= l message.created_at %><!--messagesテーブルのcreated_atカラムから、投稿した時刻を取得しています。ただし、現段階では日本基準の時刻ではありません。-->
+    </div><!--applcation.rbのファイルとja.ymlは作成編集した後にこの l メソッドを記述することで指定時刻が表示される-->
+  </div>
+  <div class="lower-message">
+    <div class="message-content">
+      <%= message.content %><!--messagesテーブルのcontentカラムから、メッセージの内容を取得しています。-->
+    </div>
+  </div>
+</div>

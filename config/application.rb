@@ -9,6 +9,9 @@ Bundler.require(*Rails.groups)
 module ChatApp
   class Application < Rails::Application
     config.load_defaults 6.0
+    config.i18n.default_locale = :ja # 日本の時刻
+    config.time_zone = 'Tokyo' #時刻の設定
+    
    # 中略
     config.generators do |g|
       g.stylesheets false

@@ -11,5 +11,9 @@
     <div class="message-content">
       <%= message.content %><!--messagesテーブルのcontentカラムから、メッセージの内容を取得しています。-->
     </div>
+    <%= image_tag message.image.variant(resize: '500x500'), class: 'message-image' if message.image.attached? %> 
+    <!--この記述によって、画像を表示できます。
+しかし、このままの記述では、画像が存在しない場合でも、画像を表示する記述が読み込まれて、エラーを引き起こしてしまいます。
+この問題を解決するために、メッセージに画像が添付されているかをチェックするattached?というメソッドを使用します。-->
   </div>
 </div>
